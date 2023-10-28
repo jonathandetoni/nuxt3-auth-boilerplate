@@ -24,7 +24,7 @@
         required
       />
 
-      <button class="button" @click.prevent="login">Login</button>
+      <button class="button" @click.prevent="login($event)">Login</button>
     </div>
   </div>
 </template>
@@ -42,7 +42,8 @@ const user = reactive({
 });
 const router = useRouter();
 
-const login = async () => {
+const login = async (event: Event) => {
+  event.preventDefault();
   await authenticateUser(user);
 
   if (authenticated) {

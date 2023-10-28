@@ -35,14 +35,14 @@ const logout = () => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 body {
   font-family: Arial, Helvetica, sans-serif;
   padding: 0;
   margin: 0;
 }
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   ul {

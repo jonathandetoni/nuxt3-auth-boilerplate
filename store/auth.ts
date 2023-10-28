@@ -9,30 +9,32 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     authenticated: false,
     loading: false,
+    token: '',
   }),
   actions: {
     async authenticateUser({ email, password }: UserPayloadInterface) {
-      const { data, pending }: any = await useFetch('http://localhost:5001/api/v1/login', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: {
-          email,
-          password,
-        },
+      const { data, pending }: any = await useFetchApi('api/v1/login', 'POST', {
+        email,
+        password,
       });
 
       this.loading = pending;
 
-      if (data.value.data.authorized) {
+      if (data.value?.authorized) {
         const token = useCookie('token');
-        token.value = data?.value?.data.acessToken;
+        token.value = data.value.acessToken;
         this.authenticated = true;
+        this.token = data.value.acessToken;
+
+        const user = useCookie('user');
+        user.value = data?.value?.user;
       }
     },
     logUserOut() {
       const token = useCookie('token');
       this.authenticated = false;
       token.value = null;
+      this.token = '';
     },
   },
 });
