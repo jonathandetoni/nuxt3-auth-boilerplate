@@ -1,18 +1,9 @@
-version: '3.3'
-name: julia
+version: '3.8'
+name: boilerplates
 services:
   nuxt:
-    image: node:18-alpine
-    container_name: web
     build:
       context: .
-    command: [sh, -c, "yarn install && yarn run dev"]
-    volumes:
-    - .:/app
-    - /app/node_modules
+    container_name: nuxt3_auth
     ports:
       - "8080:8080"
-    working_dir: '/app'
-    environment:
-      - HOST=0.0.0.0
-      - PORT=8080

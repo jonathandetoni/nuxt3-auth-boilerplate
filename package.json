@@ -1,12 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxi build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "deploy": "gh-pages -d dist"
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare",
+    "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
@@ -25,6 +25,7 @@
     "@mdi/font": "^7.3.67",
     "@pinia/nuxt": "^0.4.10",
     "cookie-universal": "^2.2.2",
+    "esbuild": "0.19.4",
     "gh-pages": "^5.0.0",
     "pinia": "^2.0.36",
     "sass": "^1.69.3",

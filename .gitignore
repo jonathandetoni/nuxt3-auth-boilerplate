@@ -1,10 +1,20 @@
-node_modules
-*.log*
-.nuxt
-.nitro
-.cache
+# Nuxt dev/build outputs
 .output
-.env
-dist
-.idea
+.nuxt
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+
+# Local env files
+.env.*
+!.env.example
+
+# VS Code
 .vscode

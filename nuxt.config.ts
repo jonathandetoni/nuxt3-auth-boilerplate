@@ -16,6 +16,9 @@ export default defineNuxtConfig({
       });
     },
   ],
+  nitro: {
+    preset: 'node-server'
+  },
   vite: {
     vue: {
       template: {
@@ -24,6 +27,12 @@ export default defineNuxtConfig({
     },
     define: {
       'process.env.DEBUG': false,
+    },
+  },
+  runtimeConfig: {
+    public: {
+      HOST_NAME: process.env.HOSTNAME || 'localhost',
+      NODE_VERSION: process.env.NODE_VERSION,
     },
   },
 });

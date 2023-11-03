@@ -35,8 +35,5 @@ WORKDIR /app
 COPY --from=builder /app  /app
 
 # expose the host and port 3000 to the server
-ENV HOST=0.0.0.0 PORT=8080 NODE_ENV=production CHOKIDAR_USEPOLLING=true
-EXPOSE 8080
-
-# run the build project with node
-ENTRYPOINT ["node", ".output/server/index.mjs"]
+ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=development CHOKIDAR_USEPOLLING=true
+EXPOSE 3000
