@@ -4,11 +4,19 @@ services:
   nuxt:
     build:
       context: .
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile.dev
     container_name: nuxt3_auth
+    environment:
+      - chokidar_usepolling=true
     command: yarn dev
     volumes:
     - ./:/app:rw
     - /app/node_modules/
     ports:
-      - "3000:3000"
+      - "24678:24678"
+    networks:
+      - boilerplates
+
+networks:
+  boilerplates:
+    driver: bridge

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     },
   ],
   nitro: {
-    preset: 'node-server'
+    preset: 'node-server',
   },
   vite: {
     vue: {
@@ -27,6 +27,15 @@ export default defineNuxtConfig({
     },
     define: {
       'process.env.DEBUG': false,
+    },
+    server: {
+      watch: {
+        usePolling: true,
+      },
+      hmr: {
+        protocol: 'ws',
+        host: 'localhost',
+      },
     },
   },
   runtimeConfig: {

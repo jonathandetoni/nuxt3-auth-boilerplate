@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxi build",
-    "dev": "nuxt dev",
+    "dev": "nuxi dev",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
     "postinstall": "nuxi prepare",

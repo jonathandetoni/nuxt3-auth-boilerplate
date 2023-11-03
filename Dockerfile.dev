@@ -1,5 +1,5 @@
-# use node 16 alpine image as build image
-FROM node:18-alpine as builder
+# use node 18 alpine image as build image
+FROM node:18-alpine as base
 
 # update and install the latest dependencies for the alpine version
 RUN apk update && apk upgrade
@@ -10,9 +10,11 @@ WORKDIR /app
 # install required packages for node image
 RUN apk --no-cache add openssh g++ make python3 git
 
+FROM base as builder
+
 # copy over package.json files
-COPY package* /app
-COPY yarn* /app
+COPY --link package* /app
+COPY --link yarn* /app
 
 # install all depencies
 RUN yarn install && yarn cache clean --force
@@ -24,7 +26,7 @@ ADD . /app
 RUN yarn build
 
 # start final image
-FROM node:18-alpine
+FROM base
 
 # update and install the latest dependencies for the alpine version
 RUN apk update && apk upgrade
@@ -35,5 +37,9 @@ WORKDIR /app
 COPY --from=builder /app  /app
 
 # expose the host and port 3000 to the server
-ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=development CHOKIDAR_USEPOLLING=true
-EXPOSE 3000
+ENV HOST=0.0.0.0 PORT=24678 NODE_ENV=development chokidar_usepolling=true
+ENV PATH=./node_modules/.bin/:$PATH
+
+EXPOSE 24678
+
+CMD ["yarn", "dev"]
